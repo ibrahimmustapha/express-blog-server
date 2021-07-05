@@ -17,27 +17,15 @@ app.use("/", blogs);
 app.use(("/"),posts);
 app.use(("/"),auth);
 
+// static files
+app.use(express.static("store"));
+
 app.use(express.json());
 app.use(cors());
+app.use(fileUpload());
 
 // fileupload middleware use
 app.use(fileUpload());
-
-// // Handles delete request from end-users
-// app.delete('/api/delete/:id', (req, res) => {
-//     let id = req.body.id;
-//     // MySQL database query
-//     db.query(
-//         "DELETE FROM Blog WHERE id=?",
-//         [id],
-//         (err, result) => {
-//             if (err) {
-//                 console.log(err);
-//             }
-//             console.log(result);
-//         }
-//     )
-// });
 
 app.listen(port, () => {
     console.log("App running on http://localhost:2500");
